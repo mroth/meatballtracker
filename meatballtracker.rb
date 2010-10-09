@@ -7,7 +7,8 @@ require 'bitly'
 require 'yaml'
 
 #initialize helper libraries
-CONFIG = YAML.load_file("config.yml") unless defined? CONFIG
+ROOT = File.dirname(__FILE__) unless defined?(ROOT)
+CONFIG = YAML.load_file("#{ROOT}/config.yml") unless defined? CONFIG
 client = Grackle::Client.new(:auth=>{
     :type=>:oauth,
     :consumer_key=>CONFIG['twitter_consumer_key'], :consumer_secret=>CONFIG['twitter_consumer_secret'],
@@ -41,6 +42,7 @@ puts "...Most recent menu on website: #{menu_url}"
 #compare menu urls
 if last_menu == menu_url
   puts "*** Menus match! Exiting!"
+  $stdout.flush
   Kernel.exit!
 else
   puts "*** New menu!  Continue with the process!"
@@ -50,11 +52,11 @@ writeOut = open('today_menu.pdf', "wb")
 writeOut.write(open(menu_url).read)
 writeOut.close
 puts 'downloaded menu'
-`pdftotext today_menu.pdf today_menu.txt`
+`pdftotext #{ROOT}/today_menu.pdf #{ROOT}/today_menu.txt`
 puts 'converted menu to text'
 
 
-menu = IO.readlines('today_menu.txt')
+menu = IO.readlines('#{ROOT}/today_menu.txt')
 date = menu.first.chomp
 
 meatballs = 0
