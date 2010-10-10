@@ -48,11 +48,11 @@ else
   puts "*** New menu!  Continue with the process!"
 end
 
-writeOut = open('today_menu.pdf', "wb")
+writeOut = open('#{HOME}/today_menu.pdf', "wb")
 writeOut.write(open(menu_url).read)
 writeOut.close
 puts 'downloaded menu'
-`pdftotext #{ROOT}/today_menu.pdf #{ROOT}/today_menu.txt`
+`/usr/bin/pdftotext #{ROOT}/today_menu.pdf #{ROOT}/today_menu.txt`
 puts 'converted menu to text'
 
 
