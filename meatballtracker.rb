@@ -48,7 +48,7 @@ else
   puts "*** New menu!  Continue with the process!"
 end
 
-writeOut = open('#{ROOT}/today_menu.pdf', "wb")
+writeOut = open("#{ROOT}/today_menu.pdf", "wb")
 writeOut.write(open(menu_url).read)
 writeOut.close
 puts 'downloaded menu'
@@ -56,7 +56,7 @@ puts 'downloaded menu'
 puts 'converted menu to text'
 
 
-menu = IO.readlines('#{ROOT}/today_menu.txt')
+menu = IO.readlines("#{ROOT}/today_menu.txt")
 date = menu.first.chomp
 
 meatballs = 0
