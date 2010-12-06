@@ -22,7 +22,7 @@ agent = Mechanize.new
 #check and see most recent menu
 puts "*** Checking Boot and Shoe website"
 agent.get("http://bootandshoeservice.com/")
-menu_url=agent.page.links.first.href
+menu_url=agent.page.links.first.href.strip
 
 #what did we last post to twitter?
 tweets=client.statuses.user_timeline?
