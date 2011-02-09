@@ -15,7 +15,7 @@ client = Grackle::Client.new(:auth=>{
     :token=>CONFIG['twitter_token'], :token_secret=>CONFIG['twitter_token_secret']
 })
 
-#Bitly.use_api_version_3
+Bitly.use_api_version_3
 bitly = Bitly.new(CONFIG['bitly_user'],CONFIG['bitly_apikey'])
 agent = Mechanize.new
   
@@ -72,7 +72,7 @@ else
   meatstr = "...no meatballs :sadface:"
 end
 
-menu_url_short = bitly.shorten(menu_url).jmp_url
+menu_url_short = bitly.shorten(menu_url, :domain => 'j.mp')
 update_str = "Boot & Shoe Service menu posted for #{date}: #{meatstr} (full menu: #{menu_url_short})"
 puts update_str
 
