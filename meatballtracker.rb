@@ -72,7 +72,7 @@ else
   meatstr = "...no meatballs :sadface:"
 end
 
-menu_url_short = bitly.shorten(menu_url, :domain => 'j.mp')
+menu_url_short = bitly.shorten(menu_url, :domain => 'j.mp').short_url
 update_str = "Boot & Shoe Service menu posted for #{date}: #{meatstr} (full menu: #{menu_url_short})"
 puts update_str
 
