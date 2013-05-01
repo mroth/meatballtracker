@@ -10,18 +10,37 @@ describe Parser do
     # it "should automatically retrieve and store the file on init" #lets not, that will complicate things
   end
 
-  describe "#parse" do
+  describe "#retrieve_file" do
     it "should copy the file to the local tmp filesystem"
     it "should store the path to the file in an instance variable"
   end
-  describe "#text" do
-    it "should run parse if needed"
-    it "should cache the text results"
-  end
 
-  describe "#contains_meatballs?" do
-    it "should fire the parse method if needed"
-    it "should return true/false as to whether the menu contains meatballs"
+  context "parsing operations" do
+    before(:each) do
+      @menu = Parser.new(
+          uri: 'http://bootandshoeservice.com/wp-content/uploads/2013/04/Dinner4-30.pdf',
+          local_path: './spec/sample_menus/Dinner4-30.pdf'
+      )
+    end
+    
+    describe "#text" do
+      it "should return the text contained in the PDF" do
+        @menu.text.should include("please, no electronic devices during pm service")
+      end
+      it "should run retrieve_file if needed"
+      it "should cache the text results"
+    end
+
+    describe "#menu_date" do
+      it "should return the posted date on the menu (not date retrieved)" do
+        @menu.menu_date.should eq('april 30, 2013')
+      end
+    end
+
+    describe "#contains_meatballs?" do
+      it "should fire the parse method if needed"
+      it "should return true/false as to whether the menu contains meatballs"
+    end
   end
 
 end
