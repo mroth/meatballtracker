@@ -37,9 +37,12 @@ describe Parser do
       end
     end
 
-    describe "#contains_meatballs?" do
+    describe "#is_delicious?" do
       it "should fire the parse method if needed"
-      it "should return true/false as to whether the menu contains meatballs"
+      it "shoud return true if the menu contains meatballs" do
+        @menu.is_delicious?.should be_true
+      end
+      it "should return false if the menu does not contain meatballs"
     end
   end
 
