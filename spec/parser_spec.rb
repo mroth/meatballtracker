@@ -7,7 +7,6 @@ describe Parser do
       lambda { Parser.new() }.should raise_error(ArgumentError)
     end
     it "should require that URI be valid"
-    # it "should automatically retrieve and store the file on init" #lets not, that will complicate things
   end
 
   describe "#retrieve_file" do
@@ -23,7 +22,6 @@ describe Parser do
       File.exist?("./tmp/cached_menu_#{p.object_id}.pdf").should be_true
       p.local_path.should eq("./tmp/cached_menu_#{p.object_id}.pdf")
     end
-    it "should store the path to the file in an instance variable"
   end
 
   context "parsing operations" do
@@ -38,8 +36,8 @@ describe Parser do
       it "should return the text contained in the PDF" do
         @menu1.text.should include("please, no electronic devices during pm service")
       end
-      it "should run retrieve_file if needed"
-      it "should cache the text results"
+      # it "should run retrieve_file if needed" √
+      # it "should cache the text results" √
     end
 
     describe "#menu_date" do
@@ -50,7 +48,6 @@ describe Parser do
     end
 
     describe "#is_delicious?" do
-      it "should fire the parse method if needed"
       it "shoud return true if the menu contains meatballs" do
         @menu1.is_delicious?.should be_true
         @menu2.is_delicious?.should be_true
