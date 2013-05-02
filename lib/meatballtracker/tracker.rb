@@ -1,5 +1,5 @@
 module Meatballtracker
-  class Updater
+  class Tracker
 
   end
 end
