@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Parser do
 
   describe ".new" do
-    it "should require a URI as an argument" do
+    it "should require a menu URI as an argument" do
       lambda { Parser.new() }.should raise_error(ArgumentError)
     end
     it "should require that URI be valid"
@@ -11,16 +11,24 @@ describe Parser do
   end
 
   describe "#retrieve_file" do
-    it "should copy the file to the local tmp filesystem"
+    it "should copy a remote file to the local tmp filesystem" do
+      p = Parser.new('http://bootandshoeservice.com/wp-content/uploads/2013/04/Dinner4-30.pdf')
+      p.retrieve_file
+      File.exist?("./tmp/foo.pdf").should be_true
+      p.local_path.should eq("./tmp/foo.pdf")
+    end
+    it "should copy a local file as to the local tmp filesystem" do
+      p = Parser.new('./spec/sample_menus/Dinner4-30.pdf')
+      p.retrieve_file
+      File.exist?("./tmp/foo.pdf").should be_true
+      p.local_path.should eq("./tmp/foo.pdf")
+    end
     it "should store the path to the file in an instance variable"
   end
 
   context "parsing operations" do
-    before(:each) do
-      @menu = Parser.new(
-          uri: 'http://bootandshoeservice.com/wp-content/uploads/2013/04/Dinner4-30.pdf',
-          local_path: './spec/sample_menus/Dinner4-30.pdf'
-      )
+    before(:all) do
+      @menu = Parser.new('./spec/sample_menus/Dinner4-30.pdf')
     end
     
     describe "#text" do

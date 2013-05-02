@@ -1,13 +1,21 @@
+require 'fileutils'
+require 'open-uri'
+
 module Meatballtracker
   class Parser
     attr_reader :uri, :local_path
 
-    def initialize(uri: nil, local_path: nil)
+    def initialize(uri)
       @uri = uri
-      @local_path = local_path
     end
 
     def retrieve_file
+      menu = open @uri
+      FileUtils.mkdir_p 'tmp'
+      cached_copy = open("./tmp/foo.pdf", "wb")
+      cached_copy.write menu.read
+      cached_copy.close
+      @local_path = cached_copy.path
     end
 
     def text
