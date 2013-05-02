@@ -4,7 +4,7 @@ require 'open-uri'
 module Meatballtracker
   # Public: The main menu parser for retrieving, caching and parsing PDF menus.
   # Also contains convenience methods for parsing out the specific menu data we want.
-  class Parser
+  class MenuParser
     attr_reader :uri, :local_path
 
     # Public: Initialize a menu Parser
