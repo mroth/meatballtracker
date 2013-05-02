@@ -28,7 +28,7 @@ describe Parser do
 
   context "parsing operations" do
     before(:all) do
-      #menu for 4/30 - meatballs on a pizza
+      #menu for 4/30 - meatballs on a pasta ('rigatoni with tomato sauce & meatballs')
       @menu1 = Parser.new('./spec/sample_menus/Dinner4-30.pdf')
       #menu for 5/1 -- meatballs as an entree ('meatballs al' pizzaiolo')
       @menu2 = Parser.new('./spec/sample_menus/Dinner5_1.pdf')
@@ -56,6 +56,14 @@ describe Parser do
         @menu2.is_delicious?.should be_true
       end
       it "should return false if the menu does not contain meatballs"
+    end
+
+    describe "#delicious_item" do
+      it "should return a string representation of the meatball menu item" do
+        @menu1.delicious_item.should eq("rigatoni with tomato sauce & meatballs")
+        @menu2.delicious_item.should eq("meatballs al' pizzaiolo")
+      end
+      it "should return nil if there are no meatballs"
     end
   end
 
