@@ -81,7 +81,7 @@ module Meatballtracker
       #
       # use double encoding trick from here:
       # http://stackoverflow.com/questions/2982677/ruby-1-9-invalid-byte-sequence-in-utf-8
-      cleaned = @text.encode('UTF-16', 'UTF-8', :invalid => :replace, :replace => '')
+      cleaned = self.text.encode('UTF-16', 'UTF-8', :invalid => :replace, :replace => '')
       cleaned.encode!('UTF-8', 'UTF-16')
 
       # * reintroduce the line breaks to subsections
