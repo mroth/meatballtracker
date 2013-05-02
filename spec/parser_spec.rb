@@ -28,12 +28,15 @@ describe Parser do
 
   context "parsing operations" do
     before(:all) do
-      @menu = Parser.new('./spec/sample_menus/Dinner4-30.pdf')
+      #menu for 4/30 - meatballs on a pizza
+      @menu1 = Parser.new('./spec/sample_menus/Dinner4-30.pdf')
+      #menu for 5/1 -- meatballs as an entree ('meatballs al' pizzaiolo')
+      @menu2 = Parser.new('./spec/sample_menus/Dinner5_1.pdf')
     end
     
     describe "#text" do
       it "should return the text contained in the PDF" do
-        @menu.text.should include("please, no electronic devices during pm service")
+        @menu1.text.should include("please, no electronic devices during pm service")
       end
       it "should run retrieve_file if needed"
       it "should cache the text results"
@@ -41,14 +44,16 @@ describe Parser do
 
     describe "#menu_date" do
       it "should return the posted date on the menu (not date retrieved)" do
-        @menu.menu_date.should eq('april 30, 2013')
+        @menu1.menu_date.should eq('april 30, 2013')
+        @menu2.menu_date.should eq('may 1, 2013')
       end
     end
 
     describe "#is_delicious?" do
       it "should fire the parse method if needed"
       it "shoud return true if the menu contains meatballs" do
-        @menu.is_delicious?.should be_true
+        @menu1.is_delicious?.should be_true
+        @menu2.is_delicious?.should be_true
       end
       it "should return false if the menu does not contain meatballs"
     end
