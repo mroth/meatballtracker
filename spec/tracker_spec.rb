@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Tracker do
+
+  describe ".new" do
+    it "should initialize a nokogiri doc for the object"
+  end
+
   it "should keep track of the most recent menu seen"
   #TODO: handle lunch as well?
   it "should die and throw a fatal error if cant reach the site"
