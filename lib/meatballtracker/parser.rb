@@ -12,7 +12,7 @@ module Meatballtracker
     def retrieve_file
       menu = open @uri
       FileUtils.mkdir_p 'tmp'
-      cached_copy = open("./tmp/foo.pdf", "wb")
+      cached_copy = open("./tmp/cached_menu_#{self.object_id}.pdf", "wb")
       cached_copy.write menu.read
       cached_copy.close
       @local_path = cached_copy.path
