@@ -8,7 +8,7 @@ module Meatballtracker
       @doc = Nokogiri::HTML(open('http://bootandshoeservice.com'))
     end
 
-    def current_dinner_menu_url
+    def current_menu_url
       @doc.at_css('img [title=dinner]').parent.attributes['href'].value
     end
 
