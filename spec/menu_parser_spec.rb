@@ -30,6 +30,8 @@ describe MenuParser do
       @menu1 = MenuParser.new('./spec/sample_menus/Dinner4-30.pdf')
       #menu for 5/1 -- meatballs as an entree ('meatballs al' pizzaiolo')
       @menu2 = MenuParser.new('./spec/sample_menus/Dinner5_1.pdf')
+      #menu for 5/2 -- no meatballs
+      @menu3 = MenuParser.new('./spec/sample_menus/Dinner5_2.pdf')
     end
     
     describe "#text" do
@@ -44,6 +46,7 @@ describe MenuParser do
       it "should return the posted date on the menu (not date retrieved)" do
         @menu1.menu_date.should eq('april 30, 2013')
         @menu2.menu_date.should eq('may 1, 2013')
+        @menu3.menu_date.should eq('may 2, 2013')
       end
     end
 
@@ -52,7 +55,9 @@ describe MenuParser do
         @menu1.is_delicious?.should be_true
         @menu2.is_delicious?.should be_true
       end
-      it "should return false if the menu does not contain meatballs"
+      it "should return false if the menu does not contain meatballs" do
+        @menu3.is_delicious?.should be_false
+      end
     end
 
     describe "#delicious_item" do
@@ -60,7 +65,9 @@ describe MenuParser do
         @menu1.delicious_item.should eq("rigatoni with tomato sauce & meatballs")
         @menu2.delicious_item.should eq("meatballs al' pizzaiolo")
       end
-      it "should return nil if there are no meatballs"
+      it "should return nil if there are no meatballs" do
+        @menu3.delicious_item.should be_nil
+      end
     end
   end
 
