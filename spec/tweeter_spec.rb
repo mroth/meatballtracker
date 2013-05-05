@@ -5,8 +5,14 @@ describe Tweeter do
     it "should be initialized from and just handle a MenuParser itself"
   end
 
+  describe ".new_from_menu"  do
+    it "should be initialized from and just handle a MenuParser itself" do
+      @menu1 = MenuParser.new('./spec/sample_menus/Dinner4-30.pdf')
+      t = Tweeter.new_from_menu(@menu1)
+    end
+  end
+
   describe "#format_msg" do
-    it "should require to know menu_date, contains_meatballs, and menu_url"
     it "should replace the menu url with a bitly shorturl"
     it "should return a nicely formatted string"
     it "should return strings under 140 characters"
