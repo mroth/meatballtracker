@@ -30,7 +30,7 @@ module Meatballtracker
     end
 
     def menu_link
-      " (menu: LINK)"
+      " (menu: #{@menu_url})"
     end
   end
 end
