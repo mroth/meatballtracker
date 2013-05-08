@@ -35,6 +35,7 @@ namespace :heroku do
   task :configure do
     `heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git`
     `heroku addons:add scheduler:standard`
-    #TODO: path
+    `heroku config:add PATH=/app/vendor/poppler/bin:/app/bin:/app/vendor/bundle/ruby/2.0.0/bin:/usr/local/bin:/usr/bin:/bin`
+    `heroku config:push` #push env variables from .env
   end
 end
