@@ -2,6 +2,12 @@ require './lib/meatballtracker'
 include Meatballtracker
 
 #temporary until we put the real logic in
+puts "Meatball tracker is at your service!"
+unless Bizhours.new.open?
+  puts "Hmm, we're currently closed for business, come back later..."
+  exit 0
+end
+
 @tracker = Tracker.new
 puts "Checking for new menu..."
 previous_url = Tweeter.most_recent_posted_menu_url
