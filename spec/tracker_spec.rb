@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Tracker do
 
   describe ".new" do
-    it "should initialize a nokogiri doc for the object"
-    it "should die and throw a fatal error if cant reach the site"
+    # it "should initialize a nokogiri doc for the object"
+    # it "should die and throw a fatal error if cant reach the site"
   end
 
   describe "#current_menu_url" do

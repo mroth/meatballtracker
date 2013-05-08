@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe TweetFormatter do
-  describe ".new"  do
-    it "should be initialized from and just handle a MenuParser itself"
-  end
 
   describe ".new_from_menu"  do
     it "should be initialized from and just handle a MenuParser itself" do
@@ -21,9 +18,14 @@ describe TweetFormatter do
         "meatballs with extra super spicy sauce"
         )
     end
-    it "should replace the menu url with a bitly shorturl"
+    it "should replace the menu url with a bitly shorturl" do
+      @t.format_str.should_not include('superlongassurl.yougottabekidding.me')
+      @t.format_str.should include('j.mp')
+    end
     it "should return a nicely formatted string"
-    it "should include the name of the menu item in the string"
+    it "should include the name of the menu item in the string" do
+      @t.format_str.should include('meatballs with extra super spicy sauce')
+    end
     it "should return strings under 140 characters" do
       @t.format_str.length.should be <= 140
     end

@@ -6,7 +6,7 @@ describe MenuParser do
     it "should require a menu URI as an argument" do
       lambda { MenuParser.new() }.should raise_error(ArgumentError)
     end
-    it "should require that URI be valid"
+    # it "should require that URI be valid" #nah, why make life harder on ourselves with the file tests?
   end
 
   describe "#retrieve_file" do
