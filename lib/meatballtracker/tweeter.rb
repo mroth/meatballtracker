@@ -2,22 +2,8 @@ require 'dotenv'; Dotenv.load
 require 'twitter'
 
 module Meatballtracker
+
   class Tweeter
-    def initialize(menu_date, menu_url, contains_meatballs, menu_item = nil)
-      @menu_date = menu_date
-      @menu_url = menu_url
-      @contains_meatballs = contains_meatballs
-      @menu_item = menu_item
-    end
-
-    def self.new_from_menu(menu)
-      Tweeter.new(menu.menu_date, menu.uri, menu.is_delicious?, menu.delicious_item)
-    end
-
-    def format_str
-      prelude + meatball_str + menu_link
-    end
-
     def self.most_recent_posted_menu_url
       if self.most_recent_posted_menu_tweet.text =~ /\(full menu: (.*)\)/
         return $1
@@ -33,6 +19,23 @@ module Meatballtracker
         nil
       end
     end
+  end
+
+  class TweetFormatter
+    def initialize(menu_date, menu_url, contains_meatballs, menu_item = nil)
+      @menu_date = menu_date
+      @menu_url = menu_url
+      @contains_meatballs = contains_meatballs
+      @menu_item = menu_item
+    end
+
+    def self.new_from_menu(menu)
+      TweetFormatter.new(menu.menu_date, menu.uri, menu.is_delicious?, menu.delicious_item)
+    end
+
+    def format_str
+      prelude + meatball_str + menu_link
+    end
 
     protected
     def prelude
@@ -47,4 +50,5 @@ module Meatballtracker
       " (menu: #{@menu_url})"
     end
   end
+
 end

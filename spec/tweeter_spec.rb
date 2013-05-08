@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tweeter do
+describe TweetFormatter do
   describe ".new"  do
     it "should be initialized from and just handle a MenuParser itself"
   end
@@ -8,13 +8,13 @@ describe Tweeter do
   describe ".new_from_menu"  do
     it "should be initialized from and just handle a MenuParser itself" do
       @menu1 = MenuParser.new('./spec/sample_menus/Dinner4-30.pdf')
-      t = Tweeter.new_from_menu(@menu1)
+      t = TweetFormatter.new_from_menu(@menu1)
     end
   end
 
   describe "#format_msg" do
     before(:each) do
-        @t = Tweeter.new(
+        @t = TweetFormatter.new(
         "november 31, 2013",
         "http://www.superlongassurl.yougottabekidding.me/menu_for_today.pdf",
         true,
@@ -29,6 +29,9 @@ describe Tweeter do
     end
   end
 
+end
+
+describe Tweeter do
   describe ".time_since_last_tweet" do
     it "should return how long it's been since the most recent menu tweet"
     #TODO: needed? Or can twitter duplicate handling nail this? prob not if file name changes...
