@@ -40,5 +40,9 @@ describe Tweeter do
     it "should return a recent url" do
       Tweeter.most_recent_posted_menu_url.should include('http://j.mp')
     end
+    it "should return nil if most_recent_posted_menu_tweet is nil" do
+      Tweeter.stub(:most_recent_posted_menu_tweet) { nil }
+      Tweeter.most_recent_posted_menu_url.should eq(nil)
+    end
   end
 end
