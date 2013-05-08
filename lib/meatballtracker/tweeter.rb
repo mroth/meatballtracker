@@ -16,7 +16,7 @@ end
 module Meatballtracker
 
   class Tweeter
-    MENU_REGEX = /\((?:full menu|menu): (.*)\)/
+    MENU_REGEX = /\((?:full menu|menu): (http.*)\)/
 
     def self.most_recent_posted_menu_url
       return nil if self.most_recent_posted_menu_tweet.nil?
@@ -62,7 +62,15 @@ module Meatballtracker
     end
 
     def menu_link
-      "menu: #{@menu_url}"
+      "menu: #{menu_url_short}"
+    end
+
+    def menu_url_short
+      url_to_use = @menu_url
+      unless url_to_use =~ /^(http:|https:)/ #handle case where we have local file objects for tests
+        url_to_use = 'http://127.0.0.1/fake_from_tests'
+      end
+      @menu_url_short ||= Bitly.client.shorten(url_to_use).short_url
     end
 
     def menu_item_str
