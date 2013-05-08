@@ -36,4 +36,9 @@ describe Tweeter do
     it "should return how long it's been since the most recent menu tweet"
     #TODO: needed? Or can twitter duplicate handling nail this? prob not if file name changes...
   end
+  describe ".most_recent_posted_menu_url" do
+    it "should return a recent url" do
+      Tweeter.most_recent_posted_menu_url.should include('http://j.mp')
+    end
+  end
 end
