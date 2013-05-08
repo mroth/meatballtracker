@@ -29,6 +29,11 @@ module Meatballtracker
     def self.most_recent_posted_menu_tweet
       @@menu_tweet ||= Twitter.user_timeline.find { |tweet| tweet.text =~ MENU_REGEX }
     end
+
+    def self.post(msg)
+      puts "NOT REALLY TWEETING FOR NOW LOL"
+      puts msg
+    end
   end
 
   class TweetFormatter
@@ -44,20 +49,26 @@ module Meatballtracker
     end
 
     def format_str
-      prelude + meatball_str + menu_link
+      "#{prelude}#{meatball_str} (#{menu_item_str}#{menu_link})"
     end
 
     protected
     def prelude
-      "Boot and Shoe Service menu for #{@menu_date} posted"
+      "Boot and Shoe Service menu posted for #{@menu_date}"
     end
 
     def meatball_str
-      @contains_meatballs ? " - AND IT CONTAINS MEATBALLS!" : "; sadly without meatballs."
+      @contains_meatballs ? " - AND IT CONTAINS MEATBALLS!" : "... sadly no meatballs."
     end
 
     def menu_link
-      " (menu: #{@menu_url})"
+      "menu: #{@menu_url}"
+    end
+
+    def menu_item_str
+      return nil if @menu_item.nil?
+      #TODO: truncate string length based on remainaing chars
+      "#{@menu_item}; "
     end
   end
 
