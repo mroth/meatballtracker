@@ -37,8 +37,10 @@ describe Tweeter do
     #TODO: needed? Or can twitter duplicate handling nail this? prob not if file name changes...
   end
   describe ".most_recent_posted_menu_url" do
-    it "should return a recent url" do
-      Tweeter.most_recent_posted_menu_url.should include('http://j.mp')
+    it "should extract and decode shorturl to full url" do
+      Tweeter.most_recent_posted_menu_url.should include('http://')
+      Tweeter.most_recent_posted_menu_url.should_not include('http://j.mp')
+      Tweeter.most_recent_posted_menu_url.should include('bootandshoeservice.com')
     end
     it "should return nil if most_recent_posted_menu_tweet is nil" do
       Tweeter.stub(:most_recent_posted_menu_tweet) { nil }

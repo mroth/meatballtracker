@@ -1,5 +1,17 @@
 require 'dotenv'; Dotenv.load
 require 'twitter'
+Twitter.configure do |config|
+  config.consumer_key       = ENV['TWITTER_CONSUMER_KEY']
+  config.consumer_secret    = ENV['TWITTER_CONSUMER_SECRET']
+  config.oauth_token        = ENV['TWITTER_OAUTH_TOKEN']
+  config.oauth_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET']
+end
+require 'bitly'
+Bitly.configure do |config|
+  config.api_version = 3
+  config.login   = ENV['BITLY_USER']
+  config.api_key = ENV['BITLY_APIKEY']
+end
 
 module Meatballtracker
 
@@ -7,7 +19,7 @@ module Meatballtracker
     def self.most_recent_posted_menu_url
       return nil if self.most_recent_posted_menu_tweet.nil?
       if self.most_recent_posted_menu_tweet.text =~ /\(full menu: (.*)\)/
-        return $1
+        return Bitly.client.expand($1).long_url
       end
       nil
     end

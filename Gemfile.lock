@@ -1,14 +1,32 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    bitly (0.9.0)
+      httparty (>= 0.7.6)
+      multi_json (~> 1.3)
+      oauth2 (>= 0.5.0, < 0.9)
     diff-lcs (1.2.4)
     dotenv (0.7.0)
     faraday (0.8.7)
       multipart-post (~> 1.1)
     fivemat (1.2.1)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
+    httpauth (0.2.0)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     multi_json (1.7.3)
+    multi_xml (0.5.3)
     multipart-post (1.2.0)
     nokogiri (1.5.9)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    rack (1.5.2)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -27,6 +45,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bitly (~> 0.9.0)
   dotenv
   fivemat
   nokogiri
