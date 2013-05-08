@@ -13,17 +13,20 @@ describe Tweeter do
   end
 
   describe "#format_msg" do
-    it "should replace the menu url with a bitly shorturl"
-    it "should return a nicely formatted string" do
-      t = Tweeter.new(
+    before(:each) do
+        @t = Tweeter.new(
         "november 31, 2013",
         "http://www.superlongassurl.yougottabekidding.me/menu_for_today.pdf",
         true,
         "meatballs with extra super spicy sauce"
         )
-      t.format_str.length.should be <= 140
     end
-    it "should return strings under 140 characters"
+    it "should replace the menu url with a bitly shorturl"
+    it "should return a nicely formatted string"
+    it "should include the name of the menu item in the string"
+    it "should return strings under 140 characters" do
+      @t.format_str.length.should be <= 140
+    end
   end
 
   describe ".time_since_last_tweet" do
