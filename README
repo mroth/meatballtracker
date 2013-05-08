@@ -1,3 +1,5 @@
+# meatballtracker
+
 A bot to check if Boot and Shoe Service in Oakland has meatballs on the menu for a given day.
 
 "@mroth: "I'll write a service to parse "meatballs" out of this and alert us when its on the menu"
@@ -5,9 +7,22 @@ http://twitter.com/tarakirchner/status/26583960263
 
 What, you thought I was joking?
 
-What this needs to do...
-1. Hit bootandshoe website, find download link, compare to previous download?
-2. follow and download link to pdf (redirection complexity?)
-3. pdftotext
-4. grep text for meatballs
-5. tweet notification if present
+## Setup
+
+### Running on heroku
+Putting setup in a rake task as `heroku:configure`, but notes below as to what to do manually.
+
+#### Setup config variables
+
+    heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
+
+#### Setup periodic tasks
+
+    heroku addons:add scheduler:standard
+    heroku addons:open scheduler
+
+Then schedule `ruby blahblah` to run every 10 minutes.
+
+
+### local development
+Remember you'll need `pdftotext` installed somewhere in your path.  Use a `.env` file to hold config variables.

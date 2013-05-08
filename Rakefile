@@ -30,3 +30,11 @@ namespace :samples do
     end
   end
 end
+
+namespace :heroku do
+  task :configure do
+    `heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git`
+    `heroku addons:add scheduler:standard`
+    #TODO: path
+  end
+end
