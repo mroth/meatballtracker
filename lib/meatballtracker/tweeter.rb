@@ -16,16 +16,18 @@ end
 module Meatballtracker
 
   class Tweeter
+    MENU_REGEX = /\((?:full menu|menu): (.*)\)/
+
     def self.most_recent_posted_menu_url
       return nil if self.most_recent_posted_menu_tweet.nil?
-      if self.most_recent_posted_menu_tweet.text =~ /\(full menu: (.*)\)/
+      if self.most_recent_posted_menu_tweet.text =~ MENU_REGEX
         return Bitly.client.expand($1).long_url
       end
       nil
     end
 
     def self.most_recent_posted_menu_tweet
-      @@menu_tweet ||= Twitter.user_timeline.find { |tweet| tweet.text =~ /\(full menu: (.*)\)/ }
+      @@menu_tweet ||= Twitter.user_timeline.find { |tweet| tweet.text =~ MENU_REGEX }
     end
   end
 
