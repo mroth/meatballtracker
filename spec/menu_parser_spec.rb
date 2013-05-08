@@ -32,6 +32,9 @@ describe MenuParser do
       @menu2 = MenuParser.new('./spec/sample_menus/Dinner5_1.pdf')
       #menu for 5/2 -- no meatballs
       @menu3 = MenuParser.new('./spec/sample_menus/Dinner5_2.pdf')
+
+      # menu for 5/4 - no meatballs
+      @menu5 = MenuParser.new('./spec/sample_menus/Dinner5_4.pdf')
     end
     
     describe "#text" do
@@ -47,6 +50,8 @@ describe MenuParser do
         @menu1.menu_date.should eq('april 30, 2013')
         @menu2.menu_date.should eq('may 1, 2013')
         @menu3.menu_date.should eq('may 2, 2013')
+
+        @menu5.menu_date.should eq('may 4, 2013')
       end
     end
 
