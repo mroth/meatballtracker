@@ -1,3 +1,6 @@
+require 'dotenv'; Dotenv.load
+require 'twitter'
+
 module Meatballtracker
   class Tweeter
     def initialize(menu_date, menu_url, contains_meatballs, menu_item = nil)
@@ -13,11 +16,22 @@ module Meatballtracker
 
     def format_str
       prelude + meatball_str + menu_link
-      # if contains_meatballs
-      #   return prelude + ", AND IT CONTAINS MEATBALLS! " + self.menu_link
-      # elseu
-      #   return self.prelude + ", sadly without meatballs. " + self.menu_link
-      # end
+    end
+
+    def self.most_recent_posted_menu_url
+      if self.most_recent_posted_menu_tweet.text =~ /\(full menu: (.*)\)/
+        return $1
+      end
+      nil
+    end
+
+    def self.most_recent_posted_menu_tweet
+      Twitter.user_timeline.each do |tweet|
+        if tweet.text =~ /\(full menu: (.*)\)/
+          return tweet
+        end
+        nil
+      end
     end
 
     protected
