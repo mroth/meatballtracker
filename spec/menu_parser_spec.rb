@@ -50,7 +50,6 @@ describe MenuParser do
         @menu1.menu_date.should eq('april 30, 2013')
         @menu2.menu_date.should eq('may 1, 2013')
         @menu3.menu_date.should eq('may 2, 2013')
-
         @menu5.menu_date.should eq('may 4, 2013')
       end
     end
