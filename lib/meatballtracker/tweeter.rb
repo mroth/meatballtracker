@@ -25,7 +25,7 @@ module Meatballtracker
     end
 
     def self.most_recent_posted_menu_tweet
-      Twitter.user_timeline.find { |tweet| tweet.text =~ /\(full menu: (.*)\)/ }
+      @@menu_tweet ||= Twitter.user_timeline.find { |tweet| tweet.text =~ /\(full menu: (.*)\)/ }
     end
   end
 
