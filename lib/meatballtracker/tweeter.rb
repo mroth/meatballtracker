@@ -5,6 +5,7 @@ module Meatballtracker
 
   class Tweeter
     def self.most_recent_posted_menu_url
+      return nil if self.most_recent_posted_menu_tweet.nil?
       if self.most_recent_posted_menu_tweet.text =~ /\(full menu: (.*)\)/
         return $1
       end
