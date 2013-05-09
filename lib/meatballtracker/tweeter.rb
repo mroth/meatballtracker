@@ -76,7 +76,34 @@ module Meatballtracker
     def menu_item_str
       return nil if @menu_item.nil?
       #TODO: truncate string length based on remainaing chars
-      "#{@menu_item}; "
+      "#{menu_item_resized}; "
+    end
+
+    # string for the menu item, but truncated to fit if needed
+    def menu_item_resized
+      return @menu_item if @menu_item.length <= self.chars_remaining
+      return @menu_item.slice(0,self.chars_remaining - 1) + "…"
+    end
+
+    # Protected: how many chars remain for the menu item in the tweet?
+    def chars_remaining
+      #add up everything except the menu item
+      used = self.prelude.length + self.meatball_str.length + self.url_char_length
+
+      #extra chars from string not encapsulated in other methods
+      #maybe parse via regex sometime, but not worth it for now
+      # format_str_extra = 3
+      # menu_item_extra = 2
+      # menu_link_extra = 5
+      extra_chars = 3+2+5
+
+      140 - (used + extra_chars)
+    end
+
+    # Protected: how many chars doe a URL take up?
+    # We need to hardcode this based on twitter because of t.co wrapping
+    def url_char_length
+      23 #assume https for good measure
     end
   end
 
