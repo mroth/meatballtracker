@@ -31,9 +31,19 @@ module Meatballtracker
     end
 
     def self.post(msg)
-      puts "NOT REALLY TWEETING FOR NOW LOL"
-      puts msg
+      puts "Formatted tweet: #{msg}"
+      if self.is_live?
+        puts "TWEETING FOR REALZ!"
+      else
+        puts "TEST MODE NOT REALLY TWEETING FOR NOW LOLZ!"
+      end
     end
+
+    protected
+    def self.is_live?
+      !!(ENV['TWITTER_LIVE'] =~ /^(true|t|yes|y|1)$/i)
+    end
+
   end
 
   class TweetFormatter
