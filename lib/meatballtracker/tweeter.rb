@@ -54,11 +54,11 @@ module Meatballtracker
 
     protected
     def prelude
-      "Boot and Shoe Service menu posted for #{@menu_date}"
+      "Menu posted for #{@menu_date}"
     end
 
     def meatball_str
-      @contains_meatballs ? " - AND IT CONTAINS MEATBALLS!" : "... sadly no meatballs."
+      @contains_meatballs ? " - IT HAS MEATBALLS!" : "... sadly no meatballs."
     end
 
     def menu_link
