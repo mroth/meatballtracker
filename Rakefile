@@ -1,6 +1,7 @@
 require 'bundler'
 require 'rspec/core/rake_task'
 require 'rake/clean'
+require 'colored'
 
 RSpec::Core::RakeTask.new(:spec)
 
@@ -26,7 +27,9 @@ namespace :samples do
     FileList.new('./spec/sample_menus/*.pdf').each do |f|
       puts "\e[1m" + File.basename(f) + "\e[0m"
       mp = MenuParser.new( f )
-      puts TweetFormatter.new_from_menu(mp).format_str
+      tweet = TweetFormatter.new_from_menu(mp).format_str
+      print tweet.white
+      puts " [#{tweet.length + 3}]".green
     end
   end
 end

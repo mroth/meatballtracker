@@ -11,4 +11,5 @@ group :development do
   gem 'rspec'
   gem 'fivemat'
   gem 'timecop'
+  gem 'colored'
 end
