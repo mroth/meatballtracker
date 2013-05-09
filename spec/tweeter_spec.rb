@@ -22,7 +22,6 @@ describe TweetFormatter do
       @t.format_str.should_not include('superlongassurl.yougottabekidding.me')
       @t.format_str.should include('j.mp')
     end
-    it "should return a nicely formatted string"
     it "should include the name of the menu item in the string" do
       @t.format_str.should include('meatballs with extra super spicy sauce')
     end
