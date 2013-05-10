@@ -1,2 +1,0 @@
-#crontab to check for menu every 20 minutes, only during business hours
-1,21,41		15-21 	* 	*	*	~/meatballtracker/meatballtracker.rb
