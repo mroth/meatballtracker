@@ -8,7 +8,7 @@ unless Bizhours.new.open?
 end
 
 @tracker = Tracker.new
-puts "Checking for new menu..."
+puts "Checking for online menu..."
 previous_url = Tweeter.most_recent_posted_menu_url
 if (@tracker.current_menu_url == previous_url)
   puts "Menu is still same as previous menu."

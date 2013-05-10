@@ -33,9 +33,10 @@ module Meatballtracker
     def self.post(msg)
       puts "Formatted tweet: #{msg}"
       if self.is_live?
-        puts "TWEETING FOR REALZ!"
+        response = Twitter.update(msg, :place_id => '6f45fa9c65c14be7')
+        puts " -> " + "posted as https://twitter.com/#{response.user.screen_name}/status/#{response.id.to_s}"
       else
-        puts "TEST MODE NOT REALLY TWEETING FOR NOW LOLZ!"
+        puts " -> ***TEST MODE NOT REALLY TWEETING FOR NOW LOLZ!***"
       end
     end
 
