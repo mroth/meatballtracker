@@ -7,14 +7,18 @@ unless Bizhours.new.open?
   exit 0
 end
 
-@tracker = Tracker.new
 puts "Checking for online menu..."
-previous_url = Tweeter.most_recent_posted_menu_url
-if (@tracker.current_menu_url == previous_url)
+previous_menu_url = Tweeter.most_recent_posted_menu_url
+current_menu_url = Tracker.new.current_menu_url
+
+puts "previous_url:\t#{previous_menu_url}"
+puts "current_url:\t#{current_menu_url}"
+
+if (current_menu_url == previous_menu_url)
   puts "Menu is still same as previous menu."
 else
-  puts "Menu appears to be new!"
-  mp = MenuParser.new( @tracker.current_menu_url )
+  puts "Menu appears to be new! Downloading and parsing it..."
+  mp = MenuParser.new( current_menu_url )
   tweet = TweetFormatter.new_from_menu(mp).format_str
   Tweeter.post(tweet)
 end

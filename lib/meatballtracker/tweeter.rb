@@ -16,14 +16,17 @@ end
 module Meatballtracker
 
   class Tweeter
-    MENU_REGEX = /\((?:full menu|menu): (http.*)\)/
+    MENU_REGEX = /menu: (http.*)\)/
 
     def self.most_recent_posted_menu_url
       return nil if self.most_recent_posted_menu_tweet.nil?
-      if self.most_recent_posted_menu_tweet.text =~ MENU_REGEX
-        return Bitly.client.expand($1).long_url
-      end
-      nil
+      # if self.most_recent_posted_menu_tweet.text =~ MENU_REGEX
+      #   return Bitly.client.expand($1).long_url
+      # end
+      # nil
+      # FUCK YOU T.CO FOR BREAKING THE ABOVE - NEW (ADMITTEDLY EASIER) LOGIC BELOW
+      jmp_url = self.most_recent_posted_menu_tweet.attrs[:entities][:urls].first[:expanded_url]
+      Bitly.client.expand(jmp_url).long_url
     end
 
     def self.most_recent_posted_menu_tweet
