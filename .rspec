@@ -1,0 +1,3 @@
+--color
+--format Fivemat
+--format html --out tmp/rspec.html

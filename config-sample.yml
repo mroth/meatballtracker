@@ -1,7 +1,0 @@
-#fill me in with actual values, then rename to config.yml
-twitter_consumer_key: aaaa
-twitter_consumer_secret: 1111
-twitter_token: bbbb
-twitter_token_secret: 2222
-bitly_user: cccc
-bitly_apikey: 3333
