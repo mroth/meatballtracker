@@ -28,6 +28,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.2)
     rack (1.5.2)
+    rake (10.0.4)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -53,6 +54,7 @@ DEPENDENCIES
   dotenv (~> 0.7.0)
   fivemat
   nokogiri (~> 1.5.9)
+  rake (~> 10.0.4)
   rspec
   timecop
   twitter (~> 4.6.2)
