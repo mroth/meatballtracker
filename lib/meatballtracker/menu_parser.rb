@@ -62,7 +62,7 @@ module Meatballtracker
     def delicious_item
       return nil unless self.is_delicious?
 
-      p_text = cleaned_text
+      p_text = self.text #cleaned_text no longer
       p_text.lines.each do |line|
         next unless line =~ /meatball/
         if line =~ /^(.*meatball[^\.]*)\.\.\../
@@ -76,6 +76,8 @@ module Meatballtracker
     end
 
     protected
+    # DEPRECATED: the following was to address the janky version of pdftotext packeged with xpdf on homebrew macosx
+    # but if you use the REAL version from the poppler package, macosx acts just like linux, sigh.
     def cleaned_text
       # * first strip out any persistent invalid chars in UTF-8
       #
