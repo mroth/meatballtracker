@@ -63,11 +63,8 @@ module Meatballtracker
       return nil unless self.is_delicious?
 
       p_text = self.text #cleaned_text no longer
-      p_text.lines.each do |line|
-        next unless line =~ /meatball/
-        if line =~ /^(.*meatball[^\.]*)\.\.\../
-          return $1
-        end
+      if p_text =~ /^(.*meatball[^\.]*)\.\.\../
+        return $1.gsub(/\n/," ")
       end
 
       #if we get to here, our parser failed to locate the named meatballs
