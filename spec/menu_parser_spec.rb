@@ -32,9 +32,11 @@ describe MenuParser do
       @menu2 = MenuParser.new('./spec/sample_menus/Dinner5_1.pdf')
       #menu for 5/2 -- no meatballs
       @menu3 = MenuParser.new('./spec/sample_menus/Dinner5_2.pdf')
-
       # menu for 5/4 - no meatballs
       @menu5 = MenuParser.new('./spec/sample_menus/Dinner5_4.pdf')
+      # menu for 5/18 - "meatballs alla pizzaiola with anson mills polenta & annabelle’s rapini"
+      # and a linebreak too, that sure confused things
+      @menu6 = MenuParser.new('./spec/sample_menus/Dinner5_18.pdf')
     end
     
     describe "#text" do
@@ -51,6 +53,7 @@ describe MenuParser do
         @menu2.menu_date.should eq('may 1, 2013')
         @menu3.menu_date.should eq('may 2, 2013')
         @menu5.menu_date.should eq('may 4, 2013')
+        @menu6.menu_date.should eq('may 18, 2013')
       end
     end
 
@@ -58,6 +61,7 @@ describe MenuParser do
       it "shoud return true if the menu contains meatballs" do
         @menu1.is_delicious?.should be_true
         @menu2.is_delicious?.should be_true
+        @menu6.is_delicious?.should be_true
       end
       it "should return false if the menu does not contain meatballs" do
         @menu3.is_delicious?.should be_false
@@ -67,7 +71,8 @@ describe MenuParser do
     describe "#delicious_item" do
       it "should return a string representation of the meatball menu item" do
         @menu1.delicious_item.should eq("rigatoni with tomato sauce & meatballs")
-        @menu2.delicious_item.should eq("meatballs al' pizzaiolo")
+        @menu2.delicious_item.should eq("meatballs al’ pizzaiolo")
+        @menu6.delicious_item.should eq("meatballs alla pizzaiola with anson mills polenta & annabelle’s rapini")
       end
       it "should return nil if there are no meatballs" do
         @menu3.delicious_item.should be_nil
